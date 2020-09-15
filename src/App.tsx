@@ -5,30 +5,20 @@ const url = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-crypto2server/7c09c100-f1d
 
 function App() {
   const [iso, setIso] = React.useState('')
-  const param: any = {
-    url: "/iso",
-    method: "post",
-    headers: {
-      "Content-Type": "application/json"
-    },
-  }
-  service(param).then(res => {
-    console.log(res)
-    setIso(JSON.stringify(res))
-  })
-  fetch("/api/iso", {
-    "method": "POST",
-    "headers": {
-      "user-agent": "vscode-restclient"
-    }
-  })
-    .then(async response => {
-      console.log(await response.json());
-    })
-    .catch(err => {
-      console.error(err);
-    });
 
+  React.useEffect(() => {
+    const param: any = {
+      url: "/iso",
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }
+    service(param).then(res => {
+      console.log(res)
+      setIso(JSON.stringify(res))
+    })
+  }, [])
   return (
     <div className="container">
       <video className="bg-container" playsInline autoPlay muted loop src={url}></video>
