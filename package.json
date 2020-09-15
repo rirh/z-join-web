@@ -47,6 +47,7 @@
     "eject": "react-scripts eject",
     "deploy": "yarn build && node git"
   },
+  "license": "ISC",
   "eslintConfig": {
     "extends": "react-app"
   },
