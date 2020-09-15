@@ -1,0 +1,17 @@
+
+
+
+#  请求二维码
+POST https://dling.hlhealth.net/doctor-api/web/qrcode HTTP/1.1
+
+###
+POST https://crypto2server-576164.service.tcloudbase.com/iso HTTP/1.1
+###
+POST https://crypto2server-576164.service.tcloudbase.com/auth?action=register HTTP/1.1
+Content-Type: application/json
+
+{
+    "action":"register",
+    "username":"wenzhi",
+    "password":"123456"
+}
