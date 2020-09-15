@@ -7,7 +7,6 @@ axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 const service = axios.create({
     // axios中请求配置有baseURL选项，表示请求URL公共部分
     baseURL: process.env.REACT_APP_BASE_URL,
-    // baseURL: process.env.REACT_APP_HOST_URL,
     // 超时
     timeout: 10000
   })

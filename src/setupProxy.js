@@ -1,6 +1,8 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
+console.log(process.env.REACT_APP_BASE_URL)
+console.log(process.env.REACT_APP_HOST_URL)
 
-module.exports = function (app) {
+module.exports = function (app) { 
     app.use(createProxyMiddleware(process.env.REACT_APP_BASE_URL, {
         target: process.env.REACT_APP_HOST_URL,
         changeOrigin: true
