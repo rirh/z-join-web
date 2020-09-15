@@ -18,6 +18,22 @@ function App() {
       console.log(res)
       setIso(JSON.stringify(res))
     })
+    const param1: any = {
+      url: "auth",
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: {
+        "action": "register",
+        "username": "wenzhi1",
+        "password": "123456"
+      }
+    }
+    service(param1).then(res => {
+      console.log(res)
+      setIso(JSON.stringify(res))
+    })
   }, [])
   return (
     <div className="container">
