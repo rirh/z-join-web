@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import service from 'src/api/axios';
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, Button, Drawer, TextField } from '@material-ui/core'
 import { AxiosResponse } from 'axios'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import moment from 'moment';
+import Layout from 'src/components/Layout/ZLayout';
 interface iso {
     epoch?: string
     iso?: string
@@ -11,9 +12,9 @@ interface iso {
 }
 
 export const HOME_PAGE_URL = '/';
-const url = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-crypto2server/7c09c100-f1da-11ea-8a36-ebb87efcf8c0.mp4'
 
 export const Home: FunctionComponent = (props: any) => {
+    const [openDraw, setOpenDraw] = React.useState<boolean>(false);
     const [iso, setIso] = React.useState<iso>({
         epoch: '',
         iso: ''
@@ -31,10 +32,26 @@ export const Home: FunctionComponent = (props: any) => {
             setIso(res)
         })
     }, [])
-    return <Box className={`${classes.root}`} >
-        <Typography className={`${classes.tips}`} variant="h4">{moment(iso?.epoch).format('YYYY-MM-DD HH:mm:ss')}</Typography>
-        <video className={`${classes.bgVideo}`} playsInline autoPlay muted loop src={url}></video>
-    </Box>
+
+    const renderDarew = <Drawer anchor='right' open={openDraw} onClose={() => setOpenDraw(false)} >
+        <Box className={classes.drawer} >
+            <Box>
+                <TextField color="secondary" id="standard-basic" label="Standard" />
+            </Box>
+            <br/>
+            <Box>
+                <TextField color="secondary" id="standard-basic" label="Standard" />
+            </Box>
+        </Box>
+    </Drawer>
+    return <Layout >
+        <Box display="flex" justifyContent="space-between" alignItems="center" margin="1vw" >
+            <Typography className={`${classes.title}`} variant="h4">Z Join</Typography>
+            <Button onClick={() => setOpenDraw(true)} className={classes.account} color="primary" >Account</Button>
+        </Box>
+        <Typography className={`${classes.tips}`} variant="body2">{iso?.epoch ? moment(iso?.epoch).format('YYYY-MM-DD HH:mm:ss') : ''}</Typography>
+        {renderDarew}
+    </Layout>
 }
 
 
@@ -53,17 +70,34 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         zIndex: -1,
         minHeight: '100vh',
         minWidth: '100vw',
-        width:'auto',
-        height:'auto',
+        width: 'auto',
+        height: 'auto',
         overflow: 'hidden',
         backgroundSize: 'cover',
+
+    },
+    title: {
+        color: theme.palette.common.white,
+        margin: theme.spacing(1),
+        fontFamily: "'Courier New', Courier, monospace",
+        fontWeight: 'bold',
+        fontSize: '38px',
+        cursor: 'pointer'
+    },
+    account: {
+        height: '40px',
 
     },
     tips: {
         color: theme.palette.common.white,
         margin: theme.spacing(1),
         fontFamily: "'Courier New', Courier, monospace",
-
+        fontSize: '18px',
+        position: 'fixed',
+        bottom: 0,
+        right: 0
+    },
+    drawer: {
+        padding: '1vw 4vw'
     }
-
 }));

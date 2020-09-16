@@ -17,9 +17,12 @@ export default createMuiTheme({
     palette: {
         primary: {
             // light: 这将从 palette.primary.main 中进行计算，
-            main: '#000080',
+            main: '#fff',
             // dark: 这将从 palette.primary.main 中进行计算，
             // contrastText: 这将计算与 palette.primary.main 的对比度
         },
+        secondary: {
+            main: '#333'
+        }
     }
 })
