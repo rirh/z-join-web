@@ -13,6 +13,7 @@ interface iso {
 interface User {
     username: string
     password: string
+    cpassword: string
     action: string
     myInviteCode?: string
 
@@ -20,6 +21,7 @@ interface User {
 const initUser: User = {
     username: '',
     password: '',
+    cpassword: '',
     myInviteCode: '',
     action: 'register',
 }
@@ -61,10 +63,15 @@ export const Home: FunctionComponent = (props: any) => {
     }
     const handleSubmit = (evt: React.FormEvent) => {
         evt.preventDefault();
+        if (user.password !== user.cpassword) {
+            alert('Password is not match');
+            return;
+        }
         executeAuth({
             data: user
         }).then((res: AxiosResponse<any>) => {
             console.log(res)
+            alert(JSON.stringify(res))
         })
     }
     const renderDarew = <Drawer anchor='right' open={openDraw} onClose={() => setOpenDraw(false)} >
@@ -72,11 +79,15 @@ export const Home: FunctionComponent = (props: any) => {
             <Typography className={classes.logintitle} variant="h5" >LOGIN/REGIST</Typography>
             <form onSubmit={handleSubmit}>
                 <Box marginTop="30px" className={classes.textWapper} >
-                    <TextField value={user.username} onChange={handleInput} size="small" fullWidth color="secondary" variant="outlined" id="username" label="USER" />
+                    <TextField value={user.username} required onChange={handleInput} size="small" fullWidth color="secondary" variant="outlined" id="username" label="User name" />
                 </Box>
                 <br />
                 <Box className={classes.textWapper}>
-                    <TextField value={user.password} onChange={handleInput} size="small" fullWidth type="password" color="secondary" variant="outlined" id="password" label="PASSWORD" />
+                    <TextField value={user.password} required onChange={handleInput} size="small" fullWidth type="password" color="secondary" variant="outlined" id="password" label="Password" />
+                </Box>
+                <br />
+                <Box className={classes.textWapper}>
+                    <TextField value={user.cpassword} required onChange={handleInput} size="small" fullWidth type="password" color="secondary" variant="outlined" id="cpassword" label="Confirm password" />
                 </Box>
                 <br />
                 <Box className={classes.textWapper}>
