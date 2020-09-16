@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import service from 'src/api/axios';
-import { Box, Typography, Button, Drawer, TextField } from '@material-ui/core'
-import { AxiosResponse } from 'axios'
+import { useAxios } from 'src/api/axios';
+import { Box, Typography, Button, Drawer, TextField, CircularProgress } from '@material-ui/core'
+import { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import moment from 'moment';
 import Layout from 'src/components/Layout/ZLayout';
@@ -10,38 +10,86 @@ interface iso {
     iso?: string
     [propName: string]: any;
 }
+interface User {
+    username: string
+    password: string
+    action: string
+    myInviteCode?: string
+
+}
+const initUser: User = {
+    username: '',
+    password: '',
+    myInviteCode: '',
+    action: 'register',
+}
+const param: AxiosRequestConfig = {
+    url: "/iso",
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+}
+const initIos: iso = {
+    epoch: '',
+    iso: ''
+}
 
 export const HOME_PAGE_URL = '/';
 
 export const Home: FunctionComponent = (props: any) => {
-    const [openDraw, setOpenDraw] = React.useState<boolean>(false);
-    const [iso, setIso] = React.useState<iso>({
-        epoch: '',
-        iso: ''
-    })
+    const [openDraw, setOpenDraw] = React.useState<boolean>(true);
+    const [user, setUser] = React.useState<User>(initUser);
+    const [iso, setIso] = React.useState<iso>(initIos)
+    const [, executeIso] = useAxios(param, { manual: true });
+    const [{ loading: authLoading }, executeAuth] = useAxios({
+        url: '/auth',
+        method: 'post'
+    }, { manual: true });
+
     const classes = useStyles();
     React.useEffect(() => {
-        const param: any = {
-            url: "/iso",
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }
-        service(param).then((res: AxiosResponse<iso>) => {
+        executeIso().then((res: AxiosResponse<iso>) => {
             setIso(res)
         })
-    }, [])
-
+    }, [executeIso])
+    const handleInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        setUser({
+            ...user,
+            [evt.target.id || evt.target.name]: evt.target.value
+        })
+    }
+    const handleSubmit = (evt: React.FormEvent) => {
+        evt.preventDefault();
+        executeAuth({
+            data: user
+        }).then((res: AxiosResponse<any>) => {
+            console.log(res)
+        })
+    }
     const renderDarew = <Drawer anchor='right' open={openDraw} onClose={() => setOpenDraw(false)} >
         <Box className={classes.drawer} >
-            <Box>
-                <TextField color="secondary" id="standard-basic" label="Standard" />
-            </Box>
-            <br/>
-            <Box>
-                <TextField color="secondary" id="standard-basic" label="Standard" />
-            </Box>
+            <Typography className={classes.logintitle} variant="h5" >LOGIN/REGIST</Typography>
+            <form onSubmit={handleSubmit}>
+                <Box marginTop="30px" className={classes.textWapper} >
+                    <TextField value={user.username} onChange={handleInput} size="small" fullWidth color="secondary" variant="outlined" id="username" label="USER" />
+                </Box>
+                <br />
+                <Box className={classes.textWapper}>
+                    <TextField value={user.password} onChange={handleInput} size="small" fullWidth type="password" color="secondary" variant="outlined" id="password" label="PASSWORD" />
+                </Box>
+                <br />
+                <Box className={classes.textWapper}>
+                    <TextField value={user.myInviteCode} onChange={handleInput} size="small" fullWidth color="secondary" variant="outlined" id="myInviteCode" label="MyInviteCode" />
+                </Box>
+                <Box marginTop="30px">
+                    <Button type="submit" fullWidth color="secondary" variant="contained">
+                        {authLoading ? (
+                            <CircularProgress size="1.1rem" color="primary" />
+                        ) : 'Submit'}
+                    </Button>
+                </Box>
+            </form>
         </Box>
     </Drawer>
     return <Layout >
@@ -98,6 +146,15 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         right: 0
     },
     drawer: {
-        padding: '1vw 4vw'
+        padding: '40px 50px',
+        width: '35vw'
+    },
+    logintitle: {
+        fontWeight: 'bold',
+        fontFamily: "'Courier New', Courier, monospace",
+
+    },
+    textWapper: {
+
     }
 }));

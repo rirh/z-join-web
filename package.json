@@ -19,6 +19,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/yup": "^0.29.5",
     "axios": "^0.20.0",
+    "axios-hooks": "^2.1.0",
     "cra-template-typescript": "1.0.3",
     "enum-values": "^1.2.1",
     "formik": "^2.1.5",
