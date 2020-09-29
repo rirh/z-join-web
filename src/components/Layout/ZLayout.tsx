@@ -3,7 +3,6 @@ import { Box } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
 const url = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-crypto2server/7c09c100-f1da-11ea-8a36-ebb87efcf8c0.mp4'
-const kda_video = 'https://6372-crypto2server-576164-1302901174.tcb.qcloud.la/kda.mp4';
 
 export default (props: PropsWithChildren<any>) => {
     const classes = useStyles();
