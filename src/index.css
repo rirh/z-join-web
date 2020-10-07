@@ -5,3 +5,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight            : 400;
 }
+
+/* dark mode */
+/* normal/light css */
+@media (prefers-color-scheme: dark) {
+  /* dark css here */
+  html,
+  img,
+  picture,
+  video {
+      filter: invert(1) hue-rotate(180deg);
+  }
+
+  .invert {
+      filter: invert(1) hue-rotate(180deg);
+  }
+}

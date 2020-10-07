@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sorry</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .pro {
+            /* margin: 50px auto; */
+            width: 100px;
+            height: 3px;
+            background: #f10;
+            animation: move 6s linear;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
+        }
+
+        @keyframes move {
+            100% {
+                /* transform: translate(200px, 0) rotate(360deg); */
+                width: 100vw;
+                background-color: #0f0;
+            }
+        }
+
+        /* body:hover .pro {
+            animation-play-state: running;
+        } */
+
+        .play {
+            padding: 10px 20px;
+            margin: 20px;
+            border: 1px solid #EEE;
+            display: inline-block;
+            cursor: none;
+        }
+
+        .play:hover {
+            background-color: #eee;
+        }
+
+        #play:hover .pro {
+            animation-play-state: running;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pro"></div>
+    <div>
+        <span class="play">
+            Play
+        </span>
+    </div>
+
+
+</body>
+<script>
+    window.addEventListener('keyup', (e) => {
+        console.log(e.keyCode)
+    })
+    const foo = (arg1) => (arg2) => arg1 * arg2;
+
+</script>
+
+</html>
