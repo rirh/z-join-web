@@ -29,6 +29,4 @@ async_exec(commend).then(
 ).catch((err) => {
     console.log(err)
     console.log(1)
-    
-
 })
