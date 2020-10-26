@@ -19,11 +19,14 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     margin: theme.spacing(2),
     display: 'grid',
-    placeItems: 'center'
+    // placeItems: 'center'
   },
   text: {
     animationDuration: '3s',
-    animationName: '$slidein'
+    animationName: '$slidein',
+    animationDirection:"alternate",
+    animationIterationCount:'infinite'
+
   },
   "@keyframes slidein": {
     from: {
