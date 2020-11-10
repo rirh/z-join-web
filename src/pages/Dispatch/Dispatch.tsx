@@ -22,21 +22,58 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     // placeItems: 'center'
   },
   text: {
-    animationDuration: '3s',
+    animationDuration: '4s',
     animationName: '$slidein',
-    animationDirection:"alternate",
-    animationIterationCount:'infinite'
+    animationDirection: "alternate",
+    animationIterationCount: 'infinite',
+
+
 
   },
   "@keyframes slidein": {
-    from: {
-      marginLeft: '100%',
-      width: '300%'
+    '0%': {
+      // marginLeft: '100%',
+      // width: '300%',
+      // transform: 'rotateX(-0deg)',
+      // perspective: 0,
+      transform: 'rotateX(-0deg)'
     },
-    to: {
-      marginLeft: '0%',
-      width: '100%'
-    }
+    // '10%': {
+    //   marginLeft: '0%',
+    //   width: '100%',
+    // },
+    // '20%': {
+    //   transform: 'rotateX(-0deg)'
+    // },
+    // '30%': {
+    //   transform: 'rotateX(360deg)'
+    // },
+    // '40%': {
+    //   transform: 'rotateY(-0deg)'
+    // },
+    // '50%': {
+    //   transform: 'rotateY(360deg)'
+    // },
+    // '60%': {
+    //   transform: 'rotateZ(-0deg)'
+    // },
+    // '70%': {
+    //   transform: 'rotateZ(360deg)'
+    // },
+    // '80%': {
+
+    // },
+    // '90%': {
+
+    // },
+    '100%': {
+      // transform: 'rotateX(360deg)'
+      perspective: 1000,
+      transform: 'rotateX(360deg)'
+    },
+
+
+
   }
 }))
 

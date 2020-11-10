@@ -29,7 +29,7 @@ export function AppRouter() {
       <Route exact path={DISPATCH_PAGE_URL} component={Dispatch} />
       {/* <Route exact path={LOGIN_PAGE_URL} component={Login} />
             <PrivateRoute exact path={REST_PASSWORD_PAGE_URL} component={RestPassword} /> */}
-      <Redirect to={DISPATCH_PAGE_URL} />
+      <Redirect to={HOME_PAGE_URL} />
     </Switch>
   </BrowserRouter>
 
