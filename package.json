@@ -30,6 +30,7 @@
     "inquirer": "^7.3.3",
     "js-cookie": "^2.2.1",
     "key-path-mirror": "^1.0.5",
+    "material-ui": "^0.20.2",
     "moment": "^2.28.0",
     "ora": "^5.1.0",
     "react": "^16.13.1",

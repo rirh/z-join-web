@@ -22,6 +22,7 @@ export function AppRouter() {
    * TODO: how to handle `/`? Redirect?
    */
   // const basename = `/${i18n.language}`;
+  console.log(DISPATCH_PAGE_URL, Dispatch)
 
   return <BrowserRouter >
     <Switch>

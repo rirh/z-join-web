@@ -5,6 +5,8 @@ import { Box, Typography, Button, Drawer, TextField, CircularProgress } from '@m
 import { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Layout from 'src/components/Layout/ZLayout';
+import { useDispatch } from 'react-redux'
+import { updateMessage } from 'src/redux/slices/appSlice'
 // import { Formik } from 'formik'
 // import * as yup from 'yup'
 
@@ -19,6 +21,7 @@ interface User {
   password: string
   cpassword: string
   action: string
+  needPermission: boolean,
   myInviteCode?: string
 
 }
@@ -26,6 +29,7 @@ const initUser: User = {
   username: '',
   password: '',
   cpassword: '',
+  needPermission: true,
   myInviteCode: '',
   action: 'register',
 }
@@ -47,7 +51,7 @@ export const Home: FunctionComponent = (props: any) => {
   const [user, setUser] = React.useState<User>(initUser);
   const [iso, setIso] = React.useState<iso>(initIos)
   const [, executeIso] = useAxios(param, { manual: true });
-
+  const dispatch = useDispatch()
   const [{ loading: authLoading }, executeAuth] = useAxios({
     url: '/auth',
     method: 'post'
@@ -74,9 +78,15 @@ export const Home: FunctionComponent = (props: any) => {
     // }
     executeAuth({
       data: user
-    }).then((res: AxiosResponse<any>) => {
+    }).then((res: AxiosResponse<{
+      code: number,
+      msg: string
+    }>) => {
       console.log(res)
-      alert(JSON.stringify(res))
+      dispatch(updateMessage({
+        open: true,
+        message: (res as any).msg
+      }))
     })
   }
 
@@ -110,7 +120,6 @@ export const Home: FunctionComponent = (props: any) => {
     </Box>
   </Drawer>
   const kda_video = 'https://6372-crypto2server-576164-1302901174.tcb.qcloud.la/kda.mp4';
-
   return <Layout >
     <Box display="flex" justifyContent="space-between" alignItems="center" margin="1vw" >
       <Typography className={`${classes.title}`} variant="h4">Z Join</Typography>
