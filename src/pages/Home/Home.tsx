@@ -82,7 +82,9 @@ export const Home: FunctionComponent = (props: any) => {
       code: number,
       msg: string
     }>) => {
-      console.log(res)
+      if ((res as any).code === 0) {
+        setUser(initUser)
+      }
       dispatch(updateMessage({
         open: true,
         message: (res as any).msg
@@ -92,7 +94,7 @@ export const Home: FunctionComponent = (props: any) => {
 
   const renderDarew = <Drawer anchor='right' open={openDraw} onClose={() => setOpenDraw(false)} >
     <Box className={classes.drawer} >
-      <Typography className={classes.logintitle} variant="h5" >LOGIN/REGIST</Typography>
+      <Typography className={classes.logintitle} variant="h5" >REGIST</Typography>
       <form onSubmit={handleSubmit}>
         <Box marginTop="30px" className={classes.textWapper} >
           <TextField required value={user.username} onChange={handleInput} size="small" fullWidth color="secondary" variant="outlined" id="username" label="User name" />
