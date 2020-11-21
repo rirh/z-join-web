@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     overflow: 'hidden',
     position: 'relative',
     marginTop: '200px',
-    height: '190px'
+    height: '150px'
 
   },
   imageWapperImage: {
@@ -145,7 +145,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   tips: {
     color: theme.palette.common.black,
     position: 'absolute',
-    right: '10px',
+    right: '20px',
     bottom: '20px'
   },
+  "@keyframes intro-img-bg": {
+    from: {
+      transform: 'translateY(-300px)'
+    },
+    to: {
+      transform: 'translateY(-800px)'
+
+    }
+  }
+
 }));
