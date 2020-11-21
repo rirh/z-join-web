@@ -1,23 +1,26 @@
+html,
 body {
   margin                 : 0;
   font-family            : 'Courier New', Courier, monospace;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight            : 400;
+  background-color       : #fff;
 }
 
 /* dark mode */
 /* normal/light css */
 @media (prefers-color-scheme: dark) {
+
   /* dark css here */
   html,
   img,
   picture,
   video {
-      filter: invert(1) hue-rotate(180deg);
+    filter: invert(1) hue-rotate(180deg);
   }
 
   .invert {
-      filter: invert(1) hue-rotate(180deg);
+    filter: invert(1) hue-rotate(180deg);
   }
 }

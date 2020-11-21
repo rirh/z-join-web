@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     animationDirection: "alternate",
     animationIterationCount: 'infinite',
 
-
-
   },
   "@keyframes slidein": {
     '0%': {
