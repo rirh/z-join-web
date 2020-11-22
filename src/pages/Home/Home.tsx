@@ -67,8 +67,8 @@ export const Home: FunctionComponent = (props: any) => {
         <Typography variant="body1">商城小程序，公众号，APP开发，信任托付，起步价5W，开发完成，源码交付</Typography>
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center" paddingTop="18vh">
-        <Button variant="contained" color="secondary" className={classes.sumbit}>现在开始</Button>
-        <Button variant="contained" color="secondary" className={classes.sumbit}>联系我们</Button>
+        <Button disableElevation variant="contained" color="secondary" className={classes.sumbit}>现在开始</Button>
+        <Button disableElevation variant="contained" color="secondary" className={classes.sumbit}>联系我们</Button>
       </Box>
       <Typography className={`${classes.tips}`} variant="body2">{iso?.epoch ? moment(iso?.epoch).format('YYYY-MM-DD HH:mm:ss') : ''}</Typography>
       <Box display="flex" justifyContent="center" alignItems="center" paddingTop="18vh">
@@ -98,6 +98,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   imageWapper: {
     width: '62%',
+    minWidth:'890px',
     /* height: auto; */
     color: '#fff',
     margin: '0 auto 60px',

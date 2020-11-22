@@ -45,7 +45,7 @@ const AppBars: FunctionComponent = (props) => {
                     </div>
                     <div className={`${classes.title}`}></div>
                     <div>
-                        <Button variant="contained" color="primary" onClick={handleOpenDrawer} className={classes.profile} >现在开始</Button>
+                        <Button disableElevation variant="contained" color="primary" onClick={handleOpenDrawer} className={classes.profile} >现在开始</Button>
                     </div>
                 </Toolbar>
             </AppBar>
